@@ -27,7 +27,7 @@ const unordered_map<string, int> SHAPE_SCORE_MAP = {
 
 int main() {
     ifstream ifs(ROOT + R"(src\day2\input1.txt)");
-    if (!ifs.good()) throw runtime_error("File not exist");
+    if (!ifs.good()) { throw runtime_error("File not exist"); }
     string opponent, outcome, me;
     int total_score = 0;
     while (!ifs.eof()) {

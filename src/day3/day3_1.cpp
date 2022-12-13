@@ -14,7 +14,7 @@ int get_score(char c) {
 
 int main() {
     ifstream ifs(ROOT + R"(src\day3\input1.txt)");
-    if (!ifs.good()) throw runtime_error("File not exist");
+    if (!ifs.good()) { throw runtime_error("File not exist"); }
     int sum = 0;
     string line;
 

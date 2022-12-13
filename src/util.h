@@ -9,6 +9,11 @@
 #include <algorithm>
 #include <unordered_map>
 #include <unordered_set>
+#include <stack>
+#include <sstream>
+#include <queue>
+#include <regex>
+#include <cassert>
 
 const std::string ROOT = R"(D:\Code\CCode\adventofcode-2022\)";
 
