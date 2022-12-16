@@ -14,6 +14,8 @@
 #include <queue>
 #include <regex>
 #include <cassert>
+#include <fmt/core.h>
+#include <fmt/ranges.h>
 
 const std::string ROOT = R"(D:\Code\CCode\adventofcode-2022\)";
 
