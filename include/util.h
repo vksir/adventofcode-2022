@@ -19,4 +19,13 @@
 
 const std::string ROOT = R"(D:\Code\CCode\adventofcode-2022\)";
 
+struct pair_hash {
+    template<class T1, class T2>
+    size_t operator()(const std::pair<T1, T2> &p) const {
+        auto h1 = std::hash<T1>{}(p.first);
+        auto h2 = std::hash<T2>{}(p.second);
+        return h1 == h2 ? h1 : h1 ^ h2;
+    }
+};
+
 #endif //ADVENTOFCODE_2022_UTIL_H
