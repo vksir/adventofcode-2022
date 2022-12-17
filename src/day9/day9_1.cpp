@@ -13,7 +13,7 @@ int main() {
     ifstream ifs(ROOT + R"(src\day9\input1.txt)");
     if (!ifs.good()) { throw runtime_error("File not exist"); }
 
-    unordered_set<pair<int, int>, pair_hash> visited;
+    unordered_set<pair<int, int>, util::PairHash> visited;
     pair<int, int> head = {0, 0};
     pair<int, int> tail = {0, 0};
     visited.insert(tail);

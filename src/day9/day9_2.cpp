@@ -14,7 +14,7 @@ int main() {
     ifstream ifs(ROOT + R"(src\day9\input1.txt)");
     if (!ifs.good()) { throw runtime_error("File not exist"); }
 
-    unordered_set<pair<int, int>, pair_hash> visited;
+    unordered_set<pair<int, int>, util::PairHash> visited;
     visited.emplace(0, 0);
     array<pair<int, int>, KNOT_NUM> knots;
     for (int i = 0; i < knots.size(); ++i) {

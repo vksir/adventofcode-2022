@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.23)
 project(adventofcode_2022)
 
-set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD 17)
 
 
 #
@@ -21,7 +21,7 @@ FetchContent_MakeAvailable(fmt)
 #
 # Executable
 #
-set(COMMON_SRC src/util.cpp)
+set(COMMON_SRC)
 
 function(add_day_executable day)
     add_executable(day${day}_1 src/day${day}/day${day}_1.cpp ${COMMON_SRC})
@@ -36,3 +36,10 @@ add_day_executable(7)
 add_day_executable(8)
 add_day_executable(9)
 add_day_executable(10)
+
+function(add_day_executable_v2 day)
+    add_executable(day${day} src/day${day}/day${day}.cpp ${COMMON_SRC})
+    target_link_libraries(day${day} PRIVATE fmt::fmt)
+endfunction()
+
+add_day_executable_v2(11)

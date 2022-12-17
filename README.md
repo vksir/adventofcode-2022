@@ -1,4 +1,4 @@
-# adventofcode-2022
+# Advent Of Code 2022
 
 My Solutions for [Advent Of Code](https://adventofcode.com/):
 
