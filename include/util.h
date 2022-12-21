@@ -15,6 +15,7 @@
 #include <regex>
 #include <cassert>
 #include <climits>
+#include <filesystem>
 #include <fmt/core.h>
 #include <fmt/ranges.h>
 
@@ -57,6 +58,19 @@ namespace util {
     }
 
     const std::array<std::pair<int, int>, 4> DIRECTION = {{{0, -1}, {0, 1}, {-1, 0}, {1, 0}}};
+
+    std::vector<int> parse_int(const std::string &s) {
+        std::vector<int> v;
+        std::regex pattern(R"((\d+))");
+        for (std::sregex_iterator it(s.begin(), s.end(), pattern); it != std::sregex_iterator(); ++it) {
+            v.push_back(std::stoi((*it)[1]));
+        }
+        return v;
+    }
+
+    std::string get_input_path(const std::string &src_path, const std::string &filename) {
+        return std::filesystem::path(src_path).parent_path().append(filename).string();
+    }
 }
 
 
