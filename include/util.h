@@ -61,7 +61,7 @@ namespace util {
 
     std::vector<int> parse_int(const std::string &s) {
         std::vector<int> v;
-        std::regex pattern(R"((\d+))");
+        std::regex pattern(R"((-?\d+))");
         for (std::sregex_iterator it(s.begin(), s.end(), pattern); it != std::sregex_iterator(); ++it) {
             v.push_back(std::stoi((*it)[1]));
         }
