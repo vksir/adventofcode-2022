@@ -1,10 +1,12 @@
-# Advent Of Code 2022
+# Advent Of Code
 
 My Solutions for [Advent Of Code](https://adventofcode.com/):
 
-- [2022 in C++](https://github.com/vksir/adventofcode-2022)
+- [2022 in C++](https://github.com/vksir/adventofcode-2022/tree/master/2022-C%2B%2B)
 
-## Usage
+## 2022 in C++
+
+### Usage
 
 ```shell
 mkdir build && cd build
@@ -12,6 +14,6 @@ cmake ..
 make
 ```
 
-## Dependencies
+### Dependencies
 
 - [fmt](https://github.com/fmtlib/fmt.git)
