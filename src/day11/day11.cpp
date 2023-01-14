@@ -41,9 +41,9 @@ struct Monkey {
 };
 
 
-vector<Monkey> read() {
+vector<Monkey> read(const string &path) {
     vector<Monkey> monkeys;
-    ifstream ifs("../src/day11/input1.txt");
+    ifstream ifs(path);
     if (!ifs.good()) { throw runtime_error("File not exist"); }
 
     array<regex, 6> patterns = {
@@ -141,24 +141,15 @@ private:
     function<int64_t(int64_t)> optimizer;
 };
 
-int main(int argc, char *argv[]) {
-    auto monkeys = read();
-    switch (util::get_part(argc, argv, 1)) {
-        case 1: {
-            Solution s(20, [](int64_t val) -> int64_t {
-                return val / 3;
-            });
-            fmt::print("Result: {}\n", s.run(monkeys));
-            break;
-        }
-        case 2: {
-            int64_t k = 1;
-            for (const auto &m: monkeys) { k *= m.divisor; }
-            Solution s(10000, [k](int64_t val) -> int64_t {
-                return val % k;
-            });
-            fmt::print("Result: {}\n", s.run(monkeys));
-            break;
-        }
-    }
+int main() {
+    auto monkeys = read(util::get_input_path(__FILE__, "input.txt"));
+    fmt::print("Part1: {}\n", Solution(20, [](int64_t val) -> int64_t {
+        return val / 3;
+    }).run(monkeys));
+
+    int64_t k = 1;
+    for (const auto &m: monkeys) { k *= m.divisor; };
+    fmt::print("Part2: {}\n", Solution(10000, [k](int64_t val) -> int64_t {
+        return val % k;
+    }).run(monkeys));
 }

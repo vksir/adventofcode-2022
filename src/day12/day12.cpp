@@ -7,8 +7,8 @@ public:
     vector<string> m;
     pair<int, int> start, end;
 
-    Context() {
-        ifstream ifs("../src/day12/input1.txt");
+    explicit Context(const string &path) {
+        ifstream ifs(path);
         if (!ifs.good()) { throw runtime_error("File not exist"); }
         string line;
         while (!ifs.eof()) {
@@ -69,26 +69,18 @@ public:
     }
 };
 
-int main(int argc, char *argv[]) {
-    Context ctx;
+int main() {
+    Context ctx(util::get_input_path(__FILE__, "input.txt"));
+    fmt::print("Part1: {}\n", Solution::run(ctx, ctx.start, ctx.end));
 
-    switch (util::get_part(argc, argv, 1)) {
-        case 1: {
-            fmt::print("Result: {}\n", Solution::run(ctx, ctx.start, ctx.end));
-            break;
-        }
-        case 2: {
-            int min_step = INT_MAX;
-            for (int y = 0; y < ctx.m.size(); ++y) {
-                for (int x = 0; x < ctx.m[0].size(); ++x) {
-                    if (ctx.m[y][x] == 'a') {
-                        auto step = Solution::run(ctx, {x, y}, ctx.end);
-                        min_step = min(min_step, step);
-                    }
-                }
+    int min_step = INT_MAX;
+    for (int y = 0; y < ctx.m.size(); ++y) {
+        for (int x = 0; x < ctx.m[0].size(); ++x) {
+            if (ctx.m[y][x] == 'a') {
+                auto step = Solution::run(ctx, {x, y}, ctx.end);
+                min_step = min(min_step, step);
             }
-            fmt::print("Result: {}\n", min_step);
-            break;
         }
     }
+    fmt::print("Part2: {}\n", min_step);
 }

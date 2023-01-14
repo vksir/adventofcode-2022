@@ -6,8 +6,8 @@ class Context {
 public:
     vector<pair<string, string>> data;
 
-    Context() {
-        ifstream ifs("../src/day13/input1.txt");
+    explicit Context(const string &path) {
+        ifstream ifs(path);
         if (!ifs.good()) { throw runtime_error("File not exist"); }
         string s1, s2;
         while (!ifs.eof()) {
@@ -136,16 +136,8 @@ public:
     }
 };
 
-int main(int argc, char *argv[]) {
-    Context ctx;
-    switch (util::get_part(argc, argv, 1)) {
-        case 1: {
-            fmt::print("Result1: {}\n", Solution1().run(ctx));
-            break;
-        }
-        case 2: {
-            fmt::print("Result2: {}\n", Solution2::run(ctx));
-            break;
-        }
-    }
+int main() {
+    Context ctx(util::get_input_path(__FILE__, "input.txt"));
+    fmt::print("Part1: {}\n", Solution1().run(ctx));
+    fmt::print("Part2: {}\n", Solution2::run(ctx));
 }

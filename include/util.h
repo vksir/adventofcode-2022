@@ -48,11 +48,6 @@ namespace util {
         return v;
     }
 
-    int get_part(int argc, char *argv[], int default_part) {
-        if (argc <= 1) { return default_part; }
-        return std::stoi(argv[1]);
-    }
-
     const std::array<std::pair<int, int>, 4> DIRECTION = {{{0, -1}, {0, 1}, {-1, 0}, {1, 0}}};
 
     std::vector<int> parse_int(const std::string &s) {
