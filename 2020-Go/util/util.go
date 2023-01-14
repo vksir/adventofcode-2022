@@ -35,5 +35,5 @@ func getInputPath(filename string) string {
 func TimeIt(f func()) {
 	t := time.Now()
 	f()
-	fmt.Printf("Cost: %dms", time.Since(t).Milliseconds())
+	fmt.Printf("Cost: %dms\n", time.Since(t).Milliseconds())
 }
