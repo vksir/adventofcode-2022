@@ -33,13 +33,13 @@ public:
     }
 };
 
-class Solution1 {
+class BaseSolution {
 public:
-    explicit Solution1(const Context &ctx) : ctx(ctx), width(ctx.max_x + 2), height(ctx.max_y + 1) {
-        assert(ctx.min_x >= 1);
+    explicit BaseSolution(Context ctx) : ctx(std::move(ctx)), width(ctx.max_x + 2), height(ctx.max_y + 1) {
+        assert(this->ctx.min_x >= 1);
     }
 
-    virtual int run() {
+    int run() {
         init_g();
         int count{0};
         while (drop(ORIGIN)) { ++count; }
@@ -99,11 +99,16 @@ protected:
     }
 };
 
-class Solution2 : public Solution1 {
+class Solution1 : public BaseSolution {
 public:
-    explicit Solution2(const Context &ctx) : Solution1(ctx), floor_y(ctx.max_y + 2) {
+    explicit Solution1(Context ctx) : BaseSolution(std::move(ctx)) {}
+};
+
+class Solution2 : public BaseSolution {
+public:
+    explicit Solution2(Context ctx) : BaseSolution(std::move(ctx)), floor_y(ctx.max_y + 2) {
         assert(ORIGIN.first - (floor_y - ORIGIN.second) >= 1);
-        width = max(ctx.max_x, ORIGIN.first + (floor_y - ORIGIN.second)) + 2;
+        width = max(this->ctx.max_x, ORIGIN.first + (floor_y - ORIGIN.second)) + 2;
         height = floor_y + 1;
     }
 
@@ -111,7 +116,7 @@ protected:
     int floor_y;
 
     void init_g() override {
-        Solution1::init_g();
+        BaseSolution::init_g();
         for (auto &i: g[floor_y]) { i = ROCK; }
     }
 };
