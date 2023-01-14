@@ -31,13 +31,13 @@ function(add_day_executable day)
 endfunction()
 
 add_day_executable(2)
-add_day_executable(3)
 
 function(add_day_executable_v2 day)
     add_executable(day${day} src/day${day}/day${day}.cpp ${COMMON_SRC})
     target_link_libraries(day${day} PRIVATE fmt::fmt)
 endfunction()
 
+add_day_executable_v2(3)
 add_day_executable_v2(7)
 add_day_executable_v2(8)
 add_day_executable_v2(9)
