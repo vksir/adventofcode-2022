@@ -31,20 +31,16 @@ namespace util {
         }
     };
 
-    std::vector<std::string> split(std::string s, char sep = ' ') {
+    std::vector<std::string> split(const std::string& s, const std::string& sep = " ") {
         std::vector<std::string> v;
-        if (s.empty()) { return v; }
-
-        int a = 0, b = 0;
-        for (; b < s.size(); ++b) {
-            if (s[b] == sep) {
-                v.push_back(s.substr(a, b - a));
-                a = b + 1;
-            }
+        size_t begin = 0, end = 0;
+        while ((end = s.find(sep, begin)) != std::string::npos) {
+            v.push_back(s.substr(begin, end - begin));
+            begin = end + sep.size();
         }
-        v.push_back(s.substr(a, b - a));
+        v.push_back(s.substr(begin));
 
-        if (sep == ' ') {
+        if (sep == " ") {
             for (auto it = v.begin(); it != v.end(); ++it) {
                 if (it->empty()) { v.erase(it--); }
             }
@@ -70,6 +66,14 @@ namespace util {
 
     std::string get_input_path(const std::string &src_path, const std::string &filename) {
         return std::filesystem::path(src_path).parent_path().append(filename).string();
+    }
+
+    template<int T>
+    void timeit(const std::function<void()> &f) {
+        auto t1 = std::chrono::system_clock::now();
+        for (int i = 0; i < T; ++i) { f(); }
+        auto t2 = std::chrono::system_clock::now();
+        fmt::print("Cost: {}ms\n", std::chrono::duration_cast<std::chrono::milliseconds>(t2 - t1).count());
     }
 }
 
