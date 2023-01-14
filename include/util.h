@@ -19,8 +19,6 @@
 #include <fmt/core.h>
 #include <fmt/ranges.h>
 
-const std::string ROOT = R"(D:\Code\CCode\adventofcode-2022\)";
-
 namespace util {
     struct PairHash {
         template<class T1, class T2>
