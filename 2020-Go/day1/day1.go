@@ -4,7 +4,6 @@ import (
 	"aoc/util"
 	"bufio"
 	"fmt"
-	"strconv"
 )
 
 type Data struct {
@@ -22,11 +21,7 @@ func (d *Data) read(filename string) {
 	defer r.Close()
 	scanner := bufio.NewScanner(r)
 	for scanner.Scan() {
-		num, err := strconv.Atoi(scanner.Text())
-		if err != nil {
-			panic(err)
-		}
-		d.nums = append(d.nums, num)
+		d.nums = append(d.nums, util.Atoi(scanner.Text()))
 	}
 }
 

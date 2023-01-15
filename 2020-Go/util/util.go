@@ -5,6 +5,7 @@ import (
 	"os"
 	"path"
 	"runtime"
+	"strconv"
 	"time"
 )
 
@@ -36,4 +37,18 @@ func TimeIt(f func()) {
 	t := time.Now()
 	f()
 	fmt.Printf("Cost: %dms\n", time.Since(t).Milliseconds())
+}
+
+func Atoi(s string) int {
+	num, err := strconv.Atoi(s)
+	if err != nil {
+		panic(err)
+	}
+	return num
+}
+
+func Assert(b bool) {
+	if !b {
+		panic("Assert failed")
+	}
 }
