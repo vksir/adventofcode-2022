@@ -6,6 +6,7 @@ import (
 	"path"
 	"runtime"
 	"strconv"
+	"strings"
 	"time"
 )
 
@@ -26,6 +27,14 @@ func (f *Reader) Close() {
 	if err != nil {
 		panic(err)
 	}
+}
+
+func ReadInputLines(filename string) []string {
+	c, err := os.ReadFile(getInputPath(filename))
+	if err != nil {
+		panic(err)
+	}
+	return strings.Split(string(c), "\n")
 }
 
 func getInputPath(filename string) string {

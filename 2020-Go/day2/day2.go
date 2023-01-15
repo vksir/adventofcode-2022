@@ -16,7 +16,7 @@ type Item struct {
 }
 
 type Data struct {
-	item []Item
+	items []Item
 }
 
 func NewData(filename string) *Data {
@@ -34,7 +34,7 @@ func (d *Data) read(filename string) {
 	scanner := bufio.NewScanner(r)
 	for scanner.Scan() {
 		res := pattern.FindStringSubmatch(scanner.Text())
-		d.item = append(d.item, Item{
+		d.items = append(d.items, Item{
 			min:    util.Atoi(res[1]),
 			max:    util.Atoi(res[2]),
 			letter: res[3],
@@ -51,9 +51,9 @@ func NewSolve1(d *Data) *Solve1 {
 	return &Solve1{d}
 }
 
-func (s *Solve1) run() int {
+func (s *Solve1) Run() int {
 	valid := 0
-	for _, item := range s.data.item {
+	for _, item := range s.data.items {
 		count := strings.Count(item.passwd, item.letter)
 		if count >= item.min && count <= item.max {
 			valid++
@@ -70,9 +70,9 @@ func NewSolve2(d *Data) *Solve2 {
 	return &Solve2{d}
 }
 
-func (s *Solve2) run() int {
+func (s *Solve2) Run() int {
 	valid := 0
-	for _, item := range s.data.item {
+	for _, item := range s.data.items {
 		item.min--
 		item.max--
 		if (item.min >= 0 && item.min < len(item.passwd) && item.passwd[item.min:item.min+1] == item.letter) !=
@@ -86,7 +86,7 @@ func (s *Solve2) run() int {
 func main() {
 	data := NewData("input.txt")
 	util.TimeIt(func() {
-		fmt.Println("Part1:", NewSolve1(data).run())
-		fmt.Println("Part2:", NewSolve2(data).run())
+		fmt.Println("Part1:", NewSolve1(data).Run())
+		fmt.Println("Part2:", NewSolve2(data).Run())
 	})
 }

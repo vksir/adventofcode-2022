@@ -33,7 +33,7 @@ func NewSolve1(d *Data) *Solve1 {
 	return &Solve1{d}
 }
 
-func (s *Solve1) run() int {
+func (s *Solve1) Run() int {
 	for i, a := range s.data.nums {
 		for j, b := range s.data.nums {
 			if i != j && a+b == 2020 {
@@ -52,7 +52,7 @@ func NewSolve2(d *Data) *Solve2 {
 	return &Solve2{d}
 }
 
-func (s *Solve2) run() int {
+func (s *Solve2) Run() int {
 	for i, a := range s.data.nums {
 		for j, b := range s.data.nums {
 			for k, c := range s.data.nums {
@@ -68,7 +68,7 @@ func (s *Solve2) run() int {
 func main() {
 	data := NewData("input.txt")
 	util.TimeIt(func() {
-		fmt.Println("Part1:", NewSolve1(data).run())
-		fmt.Println("Part2:", NewSolve2(data).run())
+		fmt.Println("Part1:", NewSolve1(data).Run())
+		fmt.Println("Part2:", NewSolve2(data).Run())
 	})
 }
