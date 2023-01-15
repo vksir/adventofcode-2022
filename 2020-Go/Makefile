@@ -1,12 +1,10 @@
-thing_right := $(wildcard day1/*.go)
-
 all: build
 
 build:
-	go build -o build/ day*/*.go
+	$(foreach day, $(wildcard day*/day*.go), go build -o build/ $(day);)
 
 execute:
-	./build/*.exe
+	$(foreach exe, $(wildcard build/*.exe), echo -e "[Execute] $(exe)\n`./$(exe)`\n";)
 
 clean:
 	rm -rf build

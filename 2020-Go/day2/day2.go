@@ -2,7 +2,6 @@ package main
 
 import (
 	"aoc/util"
-	"bufio"
 	"fmt"
 	"regexp"
 	"strings"
@@ -21,22 +20,17 @@ type Data struct {
 
 func NewData(filename string) *Data {
 	var d Data
-	d.read(filename)
+	d.parse(util.ReadInput(filename))
 	return &d
 }
 
-func (d *Data) read(filename string) {
-	r := util.NewReader(filename)
-	defer r.Close()
-
+func (d *Data) parse(content string) {
 	pattern := regexp.MustCompile(`(\d+)-(\d+) (.): (.+)`)
-
-	scanner := bufio.NewScanner(r)
-	for scanner.Scan() {
-		res := pattern.FindStringSubmatch(scanner.Text())
+	for _, line := range strings.Split(content, "\n") {
+		res := pattern.FindStringSubmatch(line)
 		d.items = append(d.items, Item{
-			min:    util.Atoi(res[1]),
-			max:    util.Atoi(res[2]),
+			min:    util.MustAtoi(res[1]),
+			max:    util.MustAtoi(res[2]),
 			letter: res[3],
 			passwd: res[4],
 		})

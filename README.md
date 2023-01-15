@@ -17,7 +17,7 @@ make
 
 ### Dependencies
 
-- [fmt](https://github.com/fmtlib/fmt.git)
+- [fmt](https://github.com/fmtlib/fmt)
 
 ## 2020 in Go
 
@@ -26,3 +26,7 @@ make
 ```shell
 make
 ```
+
+### Dependencies
+
+- [gods](https://github.com/emirpasic/gods)

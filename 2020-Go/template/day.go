@@ -3,6 +3,7 @@ package main
 import (
 	"aoc/util"
 	"fmt"
+	"strings"
 )
 
 type Data struct {
@@ -10,11 +11,15 @@ type Data struct {
 
 func NewData(filename string) *Data {
 	var d Data
-	d.parse(util.ReadInputLines(filename))
+	d.parse(util.ReadInput(filename))
 	return &d
 }
 
-func (d *Data) parse(lines []string) {}
+func (d *Data) parse(content string) {
+	for _, line := range strings.Split(content, "\n") {
+		fmt.Println(line)
+	}
+}
 
 type Solve1 struct {
 	data *Data

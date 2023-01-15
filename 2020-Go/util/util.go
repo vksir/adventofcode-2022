@@ -10,31 +10,12 @@ import (
 	"time"
 )
 
-type Reader struct {
-	*os.File
-}
-
-func NewReader(filename string) *Reader {
-	file, err := os.Open(getInputPath(filename))
-	if err != nil {
-		panic(err)
-	}
-	return &Reader{file}
-}
-
-func (f *Reader) Close() {
-	err := f.File.Close()
-	if err != nil {
-		panic(err)
-	}
-}
-
-func ReadInputLines(filename string) []string {
+func ReadInput(filename string) string {
 	c, err := os.ReadFile(getInputPath(filename))
 	if err != nil {
 		panic(err)
 	}
-	return strings.Split(string(c), "\n")
+	return strings.ReplaceAll(string(c), "\r\n", "\n")
 }
 
 func getInputPath(filename string) string {
@@ -48,16 +29,10 @@ func TimeIt(f func()) {
 	fmt.Printf("Cost: %dms\n", time.Since(t).Milliseconds())
 }
 
-func Atoi(s string) int {
+func MustAtoi(s string) int {
 	num, err := strconv.Atoi(s)
 	if err != nil {
 		panic(err)
 	}
 	return num
-}
-
-func Assert(b bool) {
-	if !b {
-		panic("Assert failed")
-	}
 }

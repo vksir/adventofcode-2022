@@ -2,8 +2,8 @@ package main
 
 import (
 	"aoc/util"
-	"bufio"
 	"fmt"
+	"strings"
 )
 
 const (
@@ -21,17 +21,13 @@ type Data struct {
 
 func NewData(filename string) *Data {
 	var d Data
-	d.read(filename)
+	d.parse(util.ReadInput(filename))
 	return &d
 }
 
-func (d *Data) read(filename string) {
-	r := util.NewReader(filename)
-	defer r.Close()
-
-	scanner := bufio.NewScanner(r)
-	for scanner.Scan() {
-		d.lines = append(d.lines, scanner.Text())
+func (d *Data) parse(content string) {
+	for _, line := range strings.Split(content, "\n") {
+		d.lines = append(d.lines, line)
 	}
 }
 
