@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.23)
-project(adventofcode_2022)
+project(2022-C++)
 
 set(CMAKE_CXX_STANDARD 17)
 
