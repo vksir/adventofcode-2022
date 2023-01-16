@@ -2,6 +2,7 @@ package util
 
 import (
 	"fmt"
+	"golang.org/x/exp/constraints"
 	"os"
 	"path"
 	"runtime"
@@ -35,4 +36,19 @@ func MustAtoi(s string) int {
 		panic(err)
 	}
 	return num
+}
+
+func Assert(b bool) {
+	if !b {
+		panic("Assert failed")
+	}
+}
+
+func Max[T constraints.Ordered](first T, others ...T) T {
+	for _, i := range others {
+		if i > first {
+			first = i
+		}
+	}
+	return first
 }

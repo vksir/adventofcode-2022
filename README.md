@@ -30,3 +30,4 @@ make
 ### Dependencies
 
 - [gods](https://github.com/emirpasic/gods)
+- [exp](https://pkg.go.dev/golang.org/x/exp)

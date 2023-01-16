@@ -7,7 +7,7 @@ import (
 )
 
 const (
-	TREE = "#"
+	tree = "#"
 )
 
 type Slope struct {
@@ -45,7 +45,7 @@ func (s *Solve1) Run(slope *Slope) int {
 	hit := 0
 	for y < len(s.data.lines) {
 		x = x % len(s.data.lines[0])
-		if s.data.lines[y][x:x+1] == TREE {
+		if s.data.lines[y][x:x+1] == tree {
 			hit++
 		}
 		x += slope.x
