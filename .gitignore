@@ -32,3 +32,5 @@
 
 .idea
 *build*
+__pycache__
+venv
