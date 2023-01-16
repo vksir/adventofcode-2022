@@ -10,7 +10,7 @@ type Data struct {
 }
 
 func NewData(filename string) *Data {
-	var d Data
+	d := Data{}
 	d.parse(util.ReadInput(filename))
 	return &d
 }
@@ -29,8 +29,8 @@ func NewSolve1(d *Data) *Solve1 {
 	return &Solve1{d}
 }
 
-func (s *Solve1) Run() int {
-	return 0
+func (s *Solve1) Run() (result int) {
+	return
 }
 
 type Solve2 struct {
@@ -41,8 +41,8 @@ func NewSolve2(d *Data) *Solve2 {
 	return &Solve2{d}
 }
 
-func (s *Solve2) Run() int {
-	return 0
+func (s *Solve2) Run() (result int) {
+	return
 }
 
 func main() {
